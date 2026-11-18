@@ -1,19 +1,25 @@
-/* Palette derived from the Koshak logo: petrol teal, aqua, matte gold. */
+/* Palette from the Koshak logo, aligned with the brand guide (Charte graphique). */
 :root {
-  --teal-900: #0c4a5c;
+  --teal-950: #072e38; /* charte: dark heroes, footer */
+  --teal-900: #0c4a5c; /* charte "pétrole": headings, primary buttons */
   --teal-800: #0f5a6f;
-  --teal-700: #14708a;
+  --teal-700: #14708a; /* hover outlines / links (approved blue) */
+  --teal-500: #1b7f93; /* charte water accent */
+  --aqua-300: #9fd3de;
   --aqua-200: #bfdde6;
-  --aqua-100: #dcecf1;
+  --aqua-100: #e4f3f6;
   --aqua-50: #eef6f8;
-  --gold-600: #b48a2c;
+  --gold-300: #e6cc82;
+  --gold-500: #c9a13b;
+  --gold-600: #b48a2c; /* ornaments, home nav underline (approved gold) */
   --gold-700: #9a7524;
   --gold-800: #7f6119;
   --gold-50: #f7f0df;
-  --ivory: #faf7f0;
-  --ivory-2: #f3eee2;
+  --gold-grad: linear-gradient(135deg, #e6cc82 0%, #c9a13b 45%, #a8822a 100%);
+  --ivory: #faf6ec;
+  --ivory-2: #f1e9d6; /* charte "sable" */
   --surface: #ffffff;
-  --ink: #1e2830;
+  --ink: #14262b;
   --ink-2: #45525c;
   --line: #e4ddcd;
   --line-strong: #d3c9b3;
@@ -30,10 +36,13 @@
 
   --radius: 12px;
   --radius-sm: 8px;
-  --shadow: 0 1px 2px rgb(30 40 48 / 0.05), 0 8px 24px rgb(30 40 48 / 0.06);
+  --arch: 999px 999px 18px 18px; /* charte signature shape */
+  --shadow: 0 1px 2px rgb(20 38 43 / 0.05), 0 8px 24px rgb(20 38 43 / 0.06);
+  --shadow-float: 0 30px 60px -30px rgb(7 46 56 / 0.35);
 
   --container: 1240px;
   --gutter: clamp(1.25rem, 4vw, 2.5rem);
   --section-y: clamp(4rem, 3rem + 4vw, 7rem);
   --tap: 56px;
 }
+

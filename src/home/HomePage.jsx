@@ -1,10 +1,10 @@
-import { ArrowLeft } from '@phosphor-icons/react';
+import { ArrowLeft, UserCircle } from '@phosphor-icons/react';
 import Header from '../components/Header.jsx';
 import Contact from '../components/Contact.jsx';
 import Reveal from '../components/Reveal.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
 import StarPattern from '../components/StarPattern.jsx';
-import { DropEmblem, ArchEmblem, SmallStar } from '../components/Emblems.jsx';
+import { DropEmblem, ArchEmblem } from '../components/Emblems.jsx';
 
 const links = [
   { href: '#top', label: 'الرئيسية' },
@@ -14,6 +14,13 @@ const links = [
 ];
 
 const badge = <span className="founding-badge">مؤسسة وقفية — منذ ١١٦٣ هـ</span>;
+
+const LoginLink = ({ block }) => (
+  <a href="/login/" className={`btn btn--outline btn--sm ${block ? 'btn--block' : ''}`}>
+    <UserCircle size={22} weight="light" aria-hidden="true" />
+    تسجيل الدخول
+  </a>
+);
 
 const stats = [
   { value: '١١٦٣ هـ', label: 'سنة التأسيس' },
@@ -40,27 +47,73 @@ export default function HomePage() {
   return (
     <>
       <a className="skip-link" href="#main">تخطَّ إلى المحتوى</a>
-      <Header homeHref="#top" accent="gold" links={links} actions={badge} mobileExtra={badge} />
+      <Header
+        homeHref="#top"
+        accent="gold"
+        links={links}
+        actions={
+          <>
+            {badge}
+            <LoginLink />
+          </>
+        }
+        mobileExtra={
+          <>
+            <LoginLink block />
+            {badge}
+          </>
+        }
+      />
 
       <main id="main">
-        {/* ---------- Hero ---------- */}
+        {/* ---------- Hero (design-file layout) ---------- */}
         <section className="home-hero" id="top" aria-labelledby="hero-title">
-          <StarPattern color="var(--gold-600)" opacity={0.05} />
-          <div className="container home-hero__inner">
-            <Reveal>
+          <div className="home-hero__glow" aria-hidden="true" />
+          <div className="kk-pattern home-hero__pattern" aria-hidden="true" />
+
+          <div className="container home-hero__grid">
+            <Reveal className="home-hero__text">
+              <p className="since-pill">
+                <b>١١٦٣ هـ</b>
+                وقفٌ خيريّ عريق بمكة المكرمة
+              </p>
               <h1 id="hero-title" className="home-hero__title">
-                أوقافُ محمد بن محمد <span className="text-gold">خوجه كوجك</span>
+                من بئرٍ بجوار البيت الحرام
+                <br />
+                إلى <em>عطاءٍ لا ينقطع</em>
               </h1>
-              <div className="rule home-hero__rule">
-                <SmallStar size={16} />
-              </div>
               <p className="home-hero__lead">
                 وقفٌ خيريّ عريق بمكة المكرمة، بدأ بئراً بجوار بيت الله الحرام، وامتدّ أثره حتى صار اليوم قسمَين يخدمان
                 الناس: سقيا الماء، وعمارة الأوقاف.
               </p>
+              <div className="home-hero__ctas">
+                <a className="btn btn--gold-grad" href="#choose">
+                  اختر القسم <span className="btn__arrow" aria-hidden="true">←</span>
+                </a>
+                <a className="btn btn--ghost-ivory" href="#about">
+                  تعرّف على الوقف
+                </a>
+              </div>
             </Reveal>
 
-            {/* ---------- Divisions ---------- */}
+            <Reveal className="home-hero__visual" delay={80} aria-hidden="true">
+              <div className="arch-frame home-hero__arch" />
+              <div className="years-badge">
+                <span className="years-badge__num">٢٧٥+</span>
+                <small>
+                  عاماً
+                  <br />
+                  من العطاء
+                </small>
+              </div>
+            </Reveal>
+          </div>
+
+        </section>
+
+        {/* ---------- Divisions (previous design) ---------- */}
+        <section className="section divisions-section" id="choose" aria-label="اختر القسم">
+          <div className="container">
             <div className="divisions" aria-labelledby="divisions-title">
               <Reveal as="p" className="divisions__label" id="divisions-title">
                 اختر القسم

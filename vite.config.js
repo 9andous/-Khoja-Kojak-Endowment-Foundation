@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         water: resolve(__dirname, 'water/index.html'),
+        login: resolve(__dirname, 'login/index.html'),
       },
     },
   },

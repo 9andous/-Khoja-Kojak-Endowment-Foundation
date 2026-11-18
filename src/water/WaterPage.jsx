@@ -1,25 +1,24 @@
-import { CaretDown, UserCircle } from '@phosphor-icons/react';
+import { UserCircle } from '@phosphor-icons/react';
 import Header from '../components/Header.jsx';
 import Contact from '../components/Contact.jsx';
 import Reveal from '../components/Reveal.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
 import StarPattern from '../components/StarPattern.jsx';
-import { SmallStar, CupShape, BottleShape, JugShape } from '../components/Emblems.jsx';
+import { SmallStar } from '../components/Emblems.jsx';
 
 const links = [
   { href: '#top', label: 'الرئيسية' },
   { href: '#about', label: 'عن الوقف' },
-  { href: '#products', label: 'منتجاتنا' },
   { href: '#quality', label: 'الجودة' },
   { href: '#contact', label: 'تواصل' },
 ];
 
-/* These two buttons are intentionally inert, exactly as on the previous site. */
+/* Login opens the login page; the request button stays inert, as on the previous site. */
 const LoginButton = ({ block }) => (
-  <button type="button" className={`btn btn--outline btn--sm ${block ? 'btn--block' : ''}`}>
+  <a href="/login/" className={`btn btn--outline btn--sm ${block ? 'btn--block' : ''}`}>
     <UserCircle size={22} weight="light" aria-hidden="true" />
     تسجيل الدخول
-  </button>
+  </a>
 );
 const RequestButton = ({ block }) => (
   <button type="button" className={`btn btn--primary btn--sm ${block ? 'btn--block' : ''}`}>
@@ -31,7 +30,7 @@ const stats = [
   { value: '10+', label: 'سنوات من الخبرة' },
   { value: '28+', label: 'جهة مستفيدة' },
   { value: '3', label: 'أحجام منتجات' },
-  { value: '98%', label: 'معدل جودة المنتج' },
+  { value: '98%', label: 'معدل جودة المنتج', gauge: 98 },
 ];
 
 const waqfFacts = [
@@ -47,20 +46,12 @@ const factoryFacts = [
   { label: 'نظام المعالجة', value: 'RO + UV + أوزون', ltr: true },
 ];
 
-const products = [
-  { size: '200 مل', type: 'كوب', uses: ['فنادق', 'مؤتمرات', 'طيران'], Shape: CupShape },
-  { size: '330 مل', type: 'بلاستيك', uses: ['بيع للأفراد', 'مكاتب', 'مدارس'], Shape: BottleShape, featured: true },
-  { size: '500 لتر', type: 'بلاستيك', uses: ['مستودعات', 'مصانع', 'مشاريع كبيرة'], Shape: JugShape },
-];
-
 const stages = [
   { n: 'المرحلة 1', title: 'مصدر المياه', text: 'مياه جوفية مختارة تخضع لفحص دوري مستمر' },
   { n: 'المرحلة 2', title: 'معالجة RO', text: 'تصفية عكسية متعددة المراحل لإزالة الشوائب' },
   { n: 'المرحلة 3', title: 'تعقيم بالأوزون', text: 'حقن الأوزون والأشعة فوق البنفسجية للقضاء على البكتيريا' },
   { n: 'المرحلة 4', title: 'فحص المختبر', text: 'تحاليل شاملة قبل الإفراج وفق معايير WHO وSFDA' },
 ];
-
-const certificates = ['ISO 22000:2018', 'FSSC 22000', 'HACCP', 'هيئة الغذاء والدواء (SFDA)', 'سياسة حلال'];
 
 const beneficiaries = ['مساجد', 'مدارس', 'جمعيات خيرية', 'مستشفيات', 'أفراد وعائلات'];
 
@@ -86,31 +77,41 @@ export default function WaterPage() {
       />
 
       <main id="main">
-        {/* ---------- Hero ---------- */}
+        {/* ---------- Hero (design-file layout) ---------- */}
         <section className="water-hero" id="top" aria-labelledby="hero-title">
-          <div className="water-hero__media" aria-hidden="true" />
-          <div className="container water-hero__inner">
-            <Reveal>
-              <p className="water-hero__badge">أوقاف محمد بن محمد خوجه كوجك — منذ 1163 هـ</p>
+          <div className="kk-pattern water-hero__pattern" aria-hidden="true" />
+          <div className="container water-hero__grid">
+            <Reveal className="water-hero__text">
+              <p className="eyebrow water-hero__eyebrow">أوقاف محمد بن محمد خوجه كوجك — منذ 1163 هـ</p>
               <h1 id="hero-title" className="water-hero__title">
-                <span>ماء طاهر نقي</span>
-                <span className="water-hero__title-gold">من خير الأوقاف</span>
+                ماء طاهر نقي
+                <span>من خير الأوقاف</span>
               </h1>
               <p className="water-hero__lead">مياه معبأة بأعلى معايير الجودة العالمية</p>
-              <div className="water-hero__actions">
-                <a className="btn btn--light" href="#products">
-                  اكتشف منتجاتنا
+              <div className="water-hero__ctas">
+                <a className="btn btn--gold-grad" href="#about">
+                  استكشف <span className="btn__arrow" aria-hidden="true">↓</span>
                 </a>
-                <a className="btn btn--ghost-light" href="#about">
-                  عن الوقف
+                <a className="btn btn--ghost-ivory" href="#cta">
+                  اطلب الماء
                 </a>
               </div>
             </Reveal>
-            <a className="water-hero__explore" href="#stats">
-              استكشف
-              <CaretDown size={22} weight="light" aria-hidden="true" />
-            </a>
+
+            <div className="bottle-stage" aria-hidden="true">
+              <div className="bottle-stage__halo" />
+              <div className="bottle-stage__frame" />
+              <div className="arch-frame bottle-stage__arch" />
+              <span className="drop" style={{ width: 22, height: 22, top: 80, right: 40 }} />
+              <span className="drop" style={{ width: 14, height: 14, top: 180, left: 30, animationDelay: '-2s' }} />
+              <span className="drop" style={{ width: 18, height: 18, bottom: 90, right: 20, animationDelay: '-4s' }} />
+            </div>
           </div>
+
+          <svg className="water-hero__wave" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 60 C 240 10 480 110 720 60 S 1200 10 1440 60 V110 H0Z" fill="#9FD3DE" opacity=".35" />
+            <path d="M0 80 C 300 30 520 120 760 76 S 1180 40 1440 84 V110 H0Z" fill="#FAF6EC" />
+          </svg>
         </section>
 
         {/* ---------- Stats ---------- */}
@@ -121,6 +122,11 @@ export default function WaterPage() {
                 <div className="stat" key={s.label}>
                   <dt className="stat__label">{s.label}</dt>
                   <dd className="stat__value">{s.value}</dd>
+                  {s.gauge && (
+                    <span className="stat__gauge" aria-hidden="true">
+                      <i style={{ width: `${s.gauge}%` }} />
+                    </span>
+                  )}
                 </div>
               ))}
             </Reveal>
@@ -187,48 +193,8 @@ export default function WaterPage() {
                     </div>
                   ))}
                 </dl>
-                <div className="spec-certs">
-                  <p className="spec-certs__title">الشهادات الدولية المعتمدة</p>
-                  <p className="spec-certs__list" dir="ltr">ISO 22000 · FSSC 22000 · HACCP · SFDA</p>
-                </div>
               </Reveal>
             </div>
-          </div>
-        </section>
-
-        {/* ---------- Products ---------- */}
-        <section className="section section--aqua" id="products" aria-labelledby="products-title">
-          <div className="container">
-            <SectionHeading
-              id="products-title"
-              center
-              eyebrow="تشكيلة منتجاتنا"
-              title="منتجاتنا"
-              text="أربعة أحجام تلبي كل احتياجاتك"
-            />
-            <ul className="products">
-              {products.map(({ size, type, uses, Shape, featured }, i) => (
-                <Reveal as="li" className={`product ${featured ? 'product--featured' : ''}`} key={size} delay={i * 70}>
-                  {featured && <span className="product__flag">الأكثر طلباً</span>}
-                  <div className="product__visual">
-                    <Shape />
-                  </div>
-                  <h3 className="product__size">{size}</h3>
-                  <p className="product__type">{type}</p>
-                  <ul className="tag-list product__uses" aria-label="الاستخدامات">
-                    {uses.map((u) => (
-                      <li className="tag" key={u}>
-                        {u}
-                      </li>
-                    ))}
-                  </ul>
-                  {/* Inert, as on the previous site */}
-                  <button type="button" className={`btn ${featured ? 'btn--primary' : 'btn--outline'} btn--block`}>
-                    طلب عرض سعر
-                  </button>
-                </Reveal>
-              ))}
-            </ul>
           </div>
         </section>
 
@@ -254,20 +220,11 @@ export default function WaterPage() {
                 </Reveal>
               ))}
             </ol>
-
-            <Reveal className="certs">
-              <h3 className="certs__title">شهاداتنا المعتمدة</h3>
-              <ul className="certs__list">
-                {certificates.map((c) => (
-                  <li key={c}>{c}</li>
-                ))}
-              </ul>
-            </Reveal>
           </div>
         </section>
 
         {/* ---------- Charity CTA ---------- */}
-        <section className="section section--tint charity" aria-labelledby="charity-title">
+        <section className="section section--tint charity" id="cta" aria-labelledby="charity-title">
           <StarPattern color="var(--gold-600)" opacity={0.08} />
           <Reveal className="container charity__inner">
             <p className="charity__note">
