@@ -79,9 +79,9 @@ export default function LoginPage() {
           <div className="kk-pattern login__main-pattern" aria-hidden="true" />
 
           <div className="login__top">
-            <a className="login__back" href="/water/">
+            <a className="login__back" href="/">
               <ArrowRight size={20} weight="regular" aria-hidden="true" />
-              العودة إلى وقف السقيا
+              العودة إلى الرئيسية
             </a>
           </div>
 
